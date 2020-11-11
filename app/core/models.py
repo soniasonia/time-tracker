@@ -56,4 +56,3 @@ class Activity(models.Model):
     def duration(self):
         if self.end_time:
             return self.end_time - self.start_time
-

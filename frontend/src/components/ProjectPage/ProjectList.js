@@ -3,7 +3,7 @@ import ProjectItem from "./ProjectItem";
 
 const ProjectList = (props) => {
   return (
-    <div class="ui link cards">
+    <div className="ui link cards">
       {props.projects.map(
         ({ id, title, description, total_duration, tags, in_progress }) => (
           <ProjectItem

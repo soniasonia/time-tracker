@@ -6,7 +6,7 @@ from rest_framework.test import APIClient
 from rest_framework import status
 
 from core.models import Project
-from api.serializers import ProjectSerializer, ProjectDetailSerializer
+from api.serializers import ProjectSerializer, ProjectActivitiesListSerializer
 from tests import create_new_user, create_new_project, create_new_activity
 
 PROJECTS_URL = reverse('api:project-list')
@@ -14,7 +14,6 @@ PROJECTS_URL = reverse('api:project-list')
 
 def detail_url(_id):
     return reverse('api:project-detail', args=[_id])
-
 
 
 class PrivateProjectTests(TestCase):
@@ -56,7 +55,7 @@ class PrivateProjectTests(TestCase):
         project.activities.add(create_new_activity(project=project))
         url = detail_url(project.id)
         res = self.client.get(url)
-        serializer = ProjectDetailSerializer(project)
+        serializer = ProjectActivitiesListSerializer(project)
         self.assertEqual(res.data, serializer.data)
 
     def test_creating_project(self):
@@ -64,4 +63,3 @@ class PrivateProjectTests(TestCase):
         serializer = ProjectSerializer(Project.objects.last())
         self.assertEqual(res.status_code, status.HTTP_201_CREATED)
         self.assertEqual(res.data, serializer.data)
-

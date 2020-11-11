@@ -1,14 +1,9 @@
-# base nodejs image
 FROM node:12.2.0-alpine
+MAINTAINER Sonia
 
-# set working directory
-WORKDIR /src
-
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /node_modules/.bin:$PATH
-
-# copy all code there
-COPY . /src/
-
-# install and cache app dependencies
+WORKDIR /frontend
+COPY package*.json ./
 RUN npm install
+COPY . ./
+EXPOSE 3000
+ENTRYPOINT [ "npm", "start" ]

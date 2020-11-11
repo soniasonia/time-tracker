@@ -1,7 +1,4 @@
-import datetime
-
 from django.test import TestCase
-from django.contrib.auth import get_user_model
 
 from core import models
 from tests import create_new_user, create_new_project, create_new_activity, finish_activity
@@ -36,7 +33,7 @@ class ModelTests(TestCase):
 
     def test_activity_in_progress(self):
         activity1 = create_new_activity(project=self.project)
-        self.assertEqual(self.project.in_progress, True)
+        self.assertEqual(self.project.in_progress, (activity1.id, activity1.start_time))
 
     def test_no_activity_in_progress(self):
         activity1 = create_new_activity(project=self.project)

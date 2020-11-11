@@ -1,4 +1,3 @@
-from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
@@ -54,10 +53,10 @@ class ProjectSerializer(serializers.ModelSerializer):
         read_only_fields = ("id",)
 
 
-class ProjectDetailSerializer(ProjectSerializer):
+class ProjectActivitiesListSerializer(ProjectSerializer):
     activities = ActivitySerializer(many=True, read_only=True)
 
     class Meta:
         model = Project
-        fields = ("id", "title", "description", "total_duration", "tags", "activities")
+        fields = ("id", "title", "description", "total_duration", "tags", "in_progress", "activities")
         read_only_fields = ("id",)

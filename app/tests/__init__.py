@@ -10,7 +10,7 @@ def create_new_user(username):
     )
 
 
-def create_new_project(user, title = "foobar"):
+def create_new_project(user, title="foobar"):
     return Project.objects.create(
         title=title,
         user=user

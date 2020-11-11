@@ -7,6 +7,8 @@ class ProjectPage extends React.Component {
   state = {
     projects: null,
     create: false,
+    modalShow: true,
+    setModalShow: false
   };
 
   async componentDidMount() {
@@ -50,8 +52,8 @@ class ProjectPage extends React.Component {
     return (
       <div style={{ margin: 10 }}>
         <div style={{ textAlign: "right" }}>
-          <div class="ui left labeled button" tabindex="0">
-            <div class="ui basic green right pointing label">
+          <div className="ui left labeled button" tabIndex="0">
+            <div className="ui basic green right pointing label">
               {this.state.projects ? (
                 <p>You have {this.state.projects.length} projects.</p>
               ) : null}

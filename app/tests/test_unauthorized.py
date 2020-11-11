@@ -36,4 +36,3 @@ class UnauthorizedTest(TestCase):
         for test_scenario in self.post_test_table:
             res = self.client.post(test_scenario.get("url"), test_scenario.get("data"))
             self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
-

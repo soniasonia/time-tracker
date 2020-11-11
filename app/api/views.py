@@ -37,8 +37,8 @@ class LogoutView(views.APIView):
 
 
 class TagViewSet(viewsets.GenericViewSet,
-                            mixins.ListModelMixin,
-                            mixins.CreateModelMixin):
+                 mixins.ListModelMixin,
+                 mixins.CreateModelMixin):
     """Manage tags in the database"""
     queryset = Tag.objects.all()
     serializer_class = serializers.TagSerializer
@@ -52,10 +52,6 @@ class TagViewSet(viewsets.GenericViewSet,
     def perform_create(self, serializer):
         """Create a new object"""
         serializer.save(user=self.request.user)
-        # Have to override save behavior because
-        # tag belongs to authenticated user
-        # authentication class takes care of getting the authenticated user
-        # and assigning it to request so we can get self.request.user
 
 
 class ProjectViewSet(viewsets.ModelViewSet):
@@ -72,7 +68,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
     def get_serializer_class(self):
         """Return appropriate serializer class"""
         if self.action == 'retrieve':
-            return serializers.ProjectDetailSerializer
+            return serializers.ProjectActivitiesListSerializer
         return self.serializer_class
 
     def perform_create(self, serializer):
@@ -81,8 +77,8 @@ class ProjectViewSet(viewsets.ModelViewSet):
 
 
 class ActivityViewSet(viewsets.GenericViewSet,
-                            mixins.CreateModelMixin,
-                            mixins.UpdateModelMixin):
+                      mixins.CreateModelMixin,
+                      mixins.UpdateModelMixin):
     queryset = Activity.objects.all()
     serializer_class = serializers.ActivitySerializer
     authentication_classes = (TokenAuthentication,)

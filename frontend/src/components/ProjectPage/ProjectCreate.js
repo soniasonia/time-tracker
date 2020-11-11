@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import TagSelection from "../TagSelection";
+import TagSelection from "./TagSelection";
 
 class ProjectCreate extends React.Component {
 
